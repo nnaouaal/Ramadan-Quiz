@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        .hidden { display: none; }
-        .visible { display: block; }
-        .triangle {
-            width: 0;
-            height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 100px solid red;
-        }
-    </style>
-    <script>
-        function startQuiz() {
-            document.getElementById('start').style.display = 'none';
-            document.getElementById('quiz').style.display = 'block';
-        }
-    </script>
+    <title>Quiz de opción múltiple</title>
 </head>
 <body>
-    <div id="start" class="visible">
-        <div class="triangle" onclick="startQuiz()"></div>
-    </div>
+    <h2>Quiz de opción múltiple</h2>
+    <form action="/submit_quiz" method="post">
+        <p>Pregunta 1: ¿Cuál es la capital de España?</p>
+        <input type="radio" id="madrid" name="question1" value="madrid">
+        <label for="madrid">Madrid</label><br>
+        <input type="radio" id="barcelona" name="question1" value="barcelona">
+        <label for="barcelona">Barcelona</label><br>
+        <input type="radio" id="valencia" name="question1" value="valencia">
+        <label for="valencia">Valencia</label><br>
 
-    <div id="quiz" class="hidden">
-        <!-- Aquí va el contenido del cuestionario -->
-    </div>
+        <p>Pregunta 2: ¿Cuál es la capital de Francia?</p>
+        <input type="radio" id="paris" name="question2" value="paris">
+        <label for="paris">París</label><br>
+        <input type="radio" id="lyon" name="question2" value="lyon">
+        <label for="lyon">Lyon</label><br>
+        <input type="radio" id="marsella" name="question2" value="marsella">
+        <label for="marsella">Marsella</label><br>
+
+        <input type="submit" value="Enviar">
+    </form>
 </body>
 </html>
+
 
 
 
