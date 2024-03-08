@@ -1,106 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <style>
-        .quiz-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .question {
-            font-weight: bold;
-        }
-    </style>
-</head>
 <body>
-    <div class="quiz-container" id="quiz"></div>
-    <button id="submit">Submit Quiz</button>
-    <div id="results"></div>
 
-    <script>
-        const quizQuestions = [
-            {
-                question: "What is 2*5?",
-                answers: {
-                    a: "2",
-                    b: "5",
-                    c: "10"
-                },
-                correctAnswer: "c"
-            },
-            {
-                question: "What is 3*2?",
-                answers: {
-                    a: "3",
-                    b: "6",
-                    c: "9"
-                },
-                correctAnswer: "b"
-            }
-        ];
+<h2>Ramadan Quiz</h2>
 
-        function showQuiz(questions, quizContainer){
-            let output = [];
-            let answers;
+<button onclick="startQuiz()">Start</button>
 
-            for(let i=0; i<questions.length; i++){
-                answers = [];
-                for(letter in questions[i].answers){
-                    answers.push(
-                        '<label>'
-                            + '<input type="radio" name="question'+i+'" value="'+letter+'">'
-                            + letter + ': '
-                            + questions[i].answers[letter]
-                        + '</label>'
-                    );
-                }
-                output.push(
-                    '<div class="question">' + questions[i].question + '</div>'
-                    + '<div class="answers">' + answers.join('') + '</div>'
-                );
-            }
-            quizContainer.innerHTML = output.join('');
-        }
+<div id="quiz" style="display: none;">
+  <p>Elige la palabra recedente y siguiente para hacer una frase correcta</p>
+  <!-- Aquí puedes agregar tu formulario de preguntas -->
+  <button onclick="checkAnswer()">Aceptar</button>
+</div>
 
-        function showResults(questions, quizContainer, resultsContainer){
-            let answerContainers = quizContainer.querySelectorAll('.answers');
-            let userAnswer = '';
-            let numCorrect = 0;
+<div id="incorrect" style="display: none;">
+  <p>Incorrecta Intenta de nuevo</p>
+  <button onclick="retryQuiz()">Intentar de nuevo</button>
+</div>
 
-            for(let i=0; i<questions.length; i++){
-                userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
-                if(userAnswer===questions[i].correctAnswer){
-                    numCorrect++;
-                    answerContainers[i].style.color = 'lightgreen';
-                }
-                else{
-                    answerContainers[i].style.color = 'red';
-                }
-            }
-            resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-        }
+<div id="correct" style="display: none;">
+  <p>Correcto! Quieres saber más de esta frase?</p>
+  <button onclick="showHistory()">Sí</button>
+  <button onclick="endQuiz()">No</button>
+</div>
 
-        showQuiz(quizQuestions, document.getElementById('quiz'));
+<div id="history" style="display: none;">
+  <p>La historia de la frase</p>
+  <button onclick="endQuiz()">Fin</button>
+</div>
 
-        document.getElementById('submit').onclick = function(){
-            showResults(quizQuestions, document.getElementById('quiz'), document.getElementById('results'));
-        }
-    </script>
-</body>
-</html>
+<div id="congratulations" style="display: none;">
+  <p>Enhorabuena</p>
+</div>
 
-    <script>
-        function toggleSections() {
-            var section1 = document.getElementById('section1');
-            var section2 = document.getElementById('section2');
-            if (section1.style.display === 'none') {
-                section1.style.display = 'flex';
-                section2.style.display = 'none';
-            } else {
-                section1.style.display = 'none';
-                section2.style.display = 'flex';
-            }
-        }
-    </script>
+<script>
+function startQuiz() {
+  document.getElementById("quiz").style.display = "block";
+}
+
+function checkAnswer() {
+  // Aquí puedes agregar la lógica para verificar la respuesta
+  document.getElementById("incorrect").style.display = "block";
+}
+
+function retryQuiz() {
+  document.getElementById("incorrect").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+}
+
+function showHistory() {
+  document.getElementById("correct").style.display = "none";
+  document.getElementById("history").style.display = "block";
+}
+
+function endQuiz() {
+  document.getElementById("correct").style.display = "none";
+  document.getElementById("history").style.display = "none";
+  document.getElementById("congratulations").style.display = "block";
+}
+</script>
+
 </body>
 </html>
