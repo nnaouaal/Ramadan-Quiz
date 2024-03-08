@@ -1,30 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz de opción múltiple</title>
+    <title>Mi Página Web</title>
+    <style>
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
-    <h2>Quiz de opción múltiple</h2>
-    <form action="/submit_quiz" method="post">
-        <p>Pregunta 1: ¿Cuál es la capital de España?</p>
-        <input type="radio" id="madrid" name="question1" value="madrid">
-        <label for="madrid">Madrid</label><br>
-        <input type="radio" id="barcelona" name="question1" value="barcelona">
-        <label for="barcelona">Barcelona</label><br>
-        <input type="radio" id="valencia" name="question1" value="valencia">
-        <label for="valencia">Valencia</label><br>
+    <!-- Primera Sección -->
+    <div id="seccion1">
+        <button onclick="startQuiz()">Start</button>
+    </div>
 
-        <p>Pregunta 2: ¿Cuál es la capital de Francia?</p>
-        <input type="radio" id="paris" name="question2" value="paris">
-        <label for="paris">París</label><br>
-        <input type="radio" id="lyon" name="question2" value="lyon">
-        <label for="lyon">Lyon</label><br>
-        <input type="radio" id="marsella" name="question2" value="marsella">
-        <label for="marsella">Marsella</label><br>
+    <!-- Segunda Sección -->
+    <div id="seccion2" class="hidden">
+        <p>Quiz: ¿Cuál es la capital de Francia?</p>
+        <input type="radio" name="quiz" value="Paris"> Paris<br>
+        <input type="radio" name="quiz" value="Madrid"> Madrid<br>
+        <button onclick="checkAnswer()">Aceptar</button>
+    </div>
 
-        <input type="submit" value="Enviar">
-    </form>
+    <!-- Tercera Sección -->
+    <div id="seccion3" class="hidden">
+        <p>¿Quieres continuar?</p>
+        <button onclick="continueQuiz()">Sí</button>
+        <button onclick="endQuiz()">No</button>
+    </div>
+
+    <!-- Cuarta Sección -->
+    <div id="seccion4" class="hidden">
+        <p>¡Has llegado al final!</p>
+        <button onclick="endQuiz()">Fin</button>
+    </div>
 </body>
+
+<script>
+    function startQuiz() {
+        document.getElementById('seccion1').style.display = 'none';
+        document.getElementById('seccion2').style.display = 'block';
+    }
+
+    function checkAnswer() {
+        var answer = document.querySelector('input[name="quiz"]:checked').value;
+        if(answer == 'Paris') {
+            document.getElementById('seccion2').style.display = 'none';
+            document.getElementById('seccion3').style.display = 'block';
+        } else {
+            alert('Intenta de nuevo');
+        }
+    }
+
+    function continueQuiz() {
+        document.getElementById('seccion3').style.display = 'none';
+        document.getElementById('seccion4').style.display = 'block';
+    }
+
+    function endQuiz() {
+        window.close();
+    }
+</script>
 </html>
 
 
