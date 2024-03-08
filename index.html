@@ -1,61 +1,57 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        .hidden { display: none; }
+        .visible { display: block; }
+    </style>
+    <script>
+        function startQuiz() {
+            document.getElementById('start').style.display = 'none';
+            document.getElementById('quiz').style.display = 'block';
+        }
+
+        function checkAnswer() {
+            var answer = document.getElementById('answer').value;
+            if (answer == 'correcta') {
+                document.getElementById('quiz').style.display = 'none';
+                document.getElementById('continue').style.display = 'block';
+            } else {
+                alert('Intenta de nuevo');
+            }
+        }
+
+        function continueQuiz(choice) {
+            if (choice) {
+                document.getElementById('continue').style.display = 'none';
+                document.getElementById('end').style.display = 'block';
+            } else {
+                document.getElementById('continue').style.display = 'none';
+                document.getElementById('start').style.display = 'block';
+            }
+        }
+    </script>
+</head>
 <body>
+    <div id="start" class="visible">
+        <button onclick="startQuiz()">Start</button>
+    </div>
 
-<div id="startSection">
-  <button onclick="startQuiz()">Start</button>
-</div>
+    <div id="quiz" class="hidden">
+        <input type="text" id="answer">
+        <button onclick="checkAnswer()">Aceptar</button>
+    </div>
 
-<div id="quizSection" style="display: none;">
-  <!-- Aquí puedes agregar tu formulario de preguntas -->
-  <button onclick="checkAnswer()">Aceptar</button>
-</div>
+    <div id="continue" class="hidden">
+        <button onclick="continueQuiz(true)">Sí</button>
+        <button onclick="continueQuiz(false)">No</button>
+    </div>
 
-<div id="incorrectSection" style="display: none;">
-  <p>Incorrecta, intenta de nuevo</p>
-  <button onclick="retryQuiz()">Volver</button>
-</div>
-
-<div id="correctSection" style="display: none;">
-  <p>Correcto! Quieres saber más de esta frase?</p>
-  <button onclick="showHistory()">Sí</button>
-  <button onclick="endQuiz()">No</button>
-</div>
-
-<div id="historySection" style="display: none;">
-  <p>La historia de la frase</p>
-  <button onclick="endQuiz()">Fin</button>
-</div>
-
-<script>
-function startQuiz() {
-  document.getElementById("startSection").style.display = "none";
-  document.getElementById("quizSection").style.display = "block";
-}
-
-function checkAnswer() {
-  // Aquí puedes agregar la lógica para verificar la respuesta
-  document.getElementById("quizSection").style.display = "none";
-  document.getElementById("incorrectSection").style.display = "block";
-}
-
-function retryQuiz() {
-  document.getElementById("incorrectSection").style.display = "none";
-  document.getElementById("quizSection").style.display = "block";
-}
-
-function showHistory() {
-  document.getElementById("correctSection").style.display = "none";
-  document.getElementById("historySection").style.display = "block";
-}
-
-function endQuiz() {
-  document.getElementById("correctSection").style.display = "none";
-  document.getElementById("historySection").style.display = "none";
-  window.close(); // Cierra la página
-}
-</script>
-
+    <div id="end" class="hidden">
+        <p>La historia de la frase</p>
+        <button onclick="location.reload()">Fin</button>
+    </div>
 </body>
 </html>
+
 
