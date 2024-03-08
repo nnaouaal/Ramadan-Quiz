@@ -4,12 +4,23 @@
     <title>Mi Página Web</title>
     <style>
         .hidden { display: none; }
+        .triangle-button {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 <body>
     <!-- Primera Sección -->
     <div id="seccion1">
-        <button onclick="startQuiz()">Start</button>
+        <button class="triangle-button" onclick="startQuiz()"></button>
     </div>
 
     <!-- Segunda Sección -->
@@ -60,7 +71,6 @@
     }
 </script>
 </html>
-
 
 
 
