@@ -24,10 +24,10 @@
     </div>
 
     <!-- Segunda Sección -->
-    <div id="seccion2" class="hidden">
-        <p>Quiz: ¿Cuál es la capital de Francia?</p>
-        <input type="radio" name="quiz" value="Paris"> Paris<br>
-        <input type="radio" name="quiz" value="Madrid"> Madrid<br>
+   <div id="seccion2" class="hidden">
+        <p id="question"></p>
+        <input type="radio" name="quiz" id="option1"> <label for="option1" id="label1"></label><br>
+        <input type="radio" name="quiz" id="option2"> <label for="option2" id="label2"></label><br>
         <button onclick="checkAnswer()">Aceptar</button>
     </div>
 
@@ -46,21 +46,34 @@
 </body>
 
 <script>
+        var questions = [
+        { question: '¿Cuál es la capital de Francia?', options: ['Paris', 'Madrid'], answer: 'Paris' },
+        { question: '¿Cuál es la capital de España?', options: ['Madrid', 'Barcelona'], answer: 'Madrid' },
+        // Añade más preguntas aquí...
+    ];
+
+    var currentQuestion;
+
     function startQuiz() {
         document.getElementById('seccion1').style.display = 'none';
+        currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+        document.getElementById('question').textContent = currentQuestion.question;
+        document.getElementById('label1').textContent = currentQuestion.options[0];
+        document.getElementById('option1').value = currentQuestion.options[0];
+        document.getElementById('label2').textContent = currentQuestion.options[1];
+        document.getElementById('option2').value = currentQuestion.options[1];
         document.getElementById('seccion2').style.display = 'block';
     }
 
     function checkAnswer() {
         var answer = document.querySelector('input[name="quiz"]:checked').value;
-        if(answer == 'Paris') {
+        if(answer == currentQuestion.answer) {
             document.getElementById('seccion2').style.display = 'none';
             document.getElementById('seccion3').style.display = 'block';
         } else {
             alert('Intenta de nuevo');
         }
     }
-
     function continueQuiz() {
         document.getElementById('seccion3').style.display = 'none';
         document.getElementById('seccion4').style.display = 'block';
@@ -71,6 +84,4 @@
     }
 </script>
 </html>
-
-
 
