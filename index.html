@@ -2,62 +2,60 @@
 <html>
 <body>
 
-<h2>Ramadan Quiz</h2>
+<div id="startSection">
+  <button onclick="startQuiz()">Start</button>
+</div>
 
-<button onclick="startQuiz()">Start</button>
-
-<div id="quiz" style="display: none;">
-  <p>Elige la palabra recedente y siguiente para hacer una frase correcta</p>
+<div id="quizSection" style="display: none;">
   <!-- Aquí puedes agregar tu formulario de preguntas -->
   <button onclick="checkAnswer()">Aceptar</button>
 </div>
 
-<div id="incorrect" style="display: none;">
-  <p>Incorrecta Intenta de nuevo</p>
-  <button onclick="retryQuiz()">Intentar de nuevo</button>
+<div id="incorrectSection" style="display: none;">
+  <p>Incorrecta, intenta de nuevo</p>
+  <button onclick="retryQuiz()">Volver</button>
 </div>
 
-<div id="correct" style="display: none;">
+<div id="correctSection" style="display: none;">
   <p>Correcto! Quieres saber más de esta frase?</p>
   <button onclick="showHistory()">Sí</button>
   <button onclick="endQuiz()">No</button>
 </div>
 
-<div id="history" style="display: none;">
+<div id="historySection" style="display: none;">
   <p>La historia de la frase</p>
   <button onclick="endQuiz()">Fin</button>
 </div>
 
-<div id="congratulations" style="display: none;">
-  <p>Enhorabuena</p>
-</div>
-
 <script>
 function startQuiz() {
-  document.getElementById("quiz").style.display = "block";
+  document.getElementById("startSection").style.display = "none";
+  document.getElementById("quizSection").style.display = "block";
 }
 
 function checkAnswer() {
   // Aquí puedes agregar la lógica para verificar la respuesta
-  document.getElementById("incorrect").style.display = "block";
+  document.getElementById("quizSection").style.display = "none";
+  document.getElementById("incorrectSection").style.display = "block";
 }
 
 function retryQuiz() {
-  document.getElementById("incorrect").style.display = "none";
-  document.getElementById("quiz").style.display = "block";
+  document.getElementById("incorrectSection").style.display = "none";
+  document.getElementById("quizSection").style.display = "block";
 }
 
 function showHistory() {
-  document.getElementById("correct").style.display = "none";
-  document.getElementById("history").style.display = "block";
+  document.getElementById("correctSection").style.display = "none";
+  document.getElementById("historySection").style.display = "block";
 }
 
 function endQuiz() {
-  document.getElementById("correct").style.display = "none";
-  document.getElementById("history").style.display = "none";
-  document.getElementById("congratulations").style.display = "block";
+  document.getElementById("correctSection").style.display = "none";
+  document.getElementById("historySection").style.display = "none";
+  window.close(); // Cierra la página
 }
 </script>
 
 </body>
 </html>
+
