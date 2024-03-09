@@ -15,6 +15,14 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+        /* Estilos para pantallas de tamaño móvil */
+        @media (max-width: 600px) {
+            .triangle-button {
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+                border-bottom: 60px solid red;
+            }
+        }
     </style>
 </head>
 <body>
@@ -24,10 +32,11 @@
     </div>
 
     <!-- Segunda Sección -->
-   <div id="seccion2" class="hidden">
+    <div id="seccion2" class="hidden">
+        <img id="questionImage" src="" alt="Imagen de la pregunta">
         <p id="question"></p>
-        <input type="radio" name="quiz" id="option1"> <label for="option1" id="label1"></label><br>
-        <input type="radio" name="quiz" id="option2"> <label for="option2" id="label2"></label><br>
+        <input type="radio" name="quiz" id="option1"> <label for="option1"><img id="option1Image" src="" alt="Imagen de la opción 1"></label><br>
+        <input type="radio" name="quiz" id="option2"> <label for="option2"><img id="option2Image" src="" alt="Imagen de la opción 2"></label><br>
         <button onclick="checkAnswer()">Aceptar</button>
     </div>
 
@@ -47,21 +56,21 @@
 
 <script>
         var questions = [
-        { question: '¿Cuál es la capital de Francia?', options: ['Paris', 'Madrid'], answer: 'Paris' },
-        { question: '¿Cuál es la capital de España?', options: ['Madrid', 'Barcelona'], answer: 'Madrid' },
+        { question: '¿Cuál es la capital de Francia?', options: [{text: 'Paris', image: '4f8749a2df0663a17fae36632b43f6a8.jpg'}, {text: 'Madrid', image: '88313dbf5b62bee26668f04224067cbf.jpg'}], answer: 'Paris', image: 'db1576d0b6bb8cf357af763b760b0895.jpg' },
+        { question: '¿Cuál es la capital de España?', options: [{text: 'Madrid', image: '315f8bd68008b494342afb693cca463f.jpg'}, {text: 'Barcelona', image: 'c1269f522ed6a0f9498df508579148e2.jpg'}], answer: 'Madrid', image: 'efa595f33245a24840e2eda983254f3a.jpg' },
         // Añade más preguntas aquí...
     ];
-
     var currentQuestion;
 
     function startQuiz() {
         document.getElementById('seccion1').style.display = 'none';
         currentQuestion = questions[Math.floor(Math.random() * questions.length)];
         document.getElementById('question').textContent = currentQuestion.question;
-        document.getElementById('label1').textContent = currentQuestion.options[0];
-        document.getElementById('option1').value = currentQuestion.options[0];
-        document.getElementById('label2').textContent = currentQuestion.options[1];
-        document.getElementById('option2').value = currentQuestion.options[1];
+        document.getElementById('questionImage').src = currentQuestion.image;
+        document.getElementById('option1').value = currentQuestion.options[0].text;
+        document.getElementById('option1Image').src = currentQuestion.options[0].image;
+        document.getElementById('option2').value = currentQuestion.options[1].text;
+        document.getElementById('option2Image').src = currentQuestion.options[1].image;
         document.getElementById('seccion2').style.display = 'block';
     }
 
